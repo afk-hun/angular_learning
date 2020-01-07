@@ -1,1 +1,4 @@
-<p>favorite works!</p>
+<span   class="fa-star" 
+        [class.fa]="isFavorite" 
+        [class.far]="!isFavorite"
+        (click)="onClick()"></span>
