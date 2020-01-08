@@ -12,6 +12,12 @@ export class AppComponent {
     isFavorite: true
   }
 
+  tweet = {
+    body: "Here is the body of tweet...",
+    isLiked: true,
+    likesCount: 40
+  }
+
   onFavoriteChange(eventArgs: { newValue: FavoriteChangeEventArgs }) {
     console.log("favorite change to: ", eventArgs);
   }
