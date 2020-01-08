@@ -1,4 +1,10 @@
+<style>
+    .fa-star {
+        color: blue;
+    }
+</style>
+
 <span   class="fa-star" 
-        [class.fa]="isFavorite" 
-        [class.far]="!isFavorite"
+        [class.fa]="isSelected" 
+        [class.far]="!isSelected"
         (click)="onClick()"></span>

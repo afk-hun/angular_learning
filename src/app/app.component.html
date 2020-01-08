@@ -1,5 +1,6 @@
 <h1>Angular</h1>
-<favorite></favorite>
+<favorite [is-selected]="post.isFavorite" 
+            (change)="onFavoriteChange($event)"></favorite>
 <input type="text" [(ngModel)]="title"/>
 <br>
 {{ title | titleCase}}
