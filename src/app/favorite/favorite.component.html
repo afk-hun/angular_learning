@@ -5,6 +5,8 @@
 </style>
 
 <span   class="fa-star" 
-        [class.fa]="isSelected" 
-        [class.far]="!isSelected"
+        [ngClass]="{
+            'fa': isSelected,
+            'far': !isSelected
+        }"
         (click)="onClick()"></span>

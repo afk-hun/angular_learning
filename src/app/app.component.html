@@ -1,19 +1,106 @@
 <h1>Angular</h1>
-<like
-    [likesCount]="tweet.likesCount"
-    [isActive]="tweet.isLiked" >
-</like>
-<bootstrap-panel>
-   <ng-container class="heading">Heading</ng-container>
-   <div class="body">
-       <h2>Body</h2>
-       <p>Some content here ...</p>
-   </div> 
-</bootstrap-panel>
 
-<favorite [is-selected]="post.isFavorite" 
-            (change)="onFavoriteChange($event)"></favorite>
-<input type="text" [(ngModel)]="title"/>
+<h4>-- custom directive</h4>
+    <input type="text" [appInputFormat]="'uppercase'"> 
+<br><br>
+
+<h4>-- Safe traversal operator "?." </h4>
+    <span>{{ task.assignee?.name }}</span>
+<br><br>
+
+<h4>-- ngStyle</h4>
+    <button 
+        [ngStyle]="{
+            'backgroundColor' : canSave ? 'blue' : 'gray',
+            'color' : canSave ? 'white' : 'black',
+            'fontWeight' : canSave ? 'bold' : 'normal'
+        }" >
+        Save
+    </button>
 <br>
-{{ title | titleCase}}
-<courses></courses>
+
+<h4>-- ngFor and TrackBy</h4>
+    <button (click)="loadExamples()">Load</button>
+    <ul>
+        <li *ngFor="let exm of examples; trackBy: trackExample">
+            {{ exm.name }} 
+        </li>
+    </ul>
+<br>
+
+<h4>-- ngFor change detection </h4>
+    <button (click)="onAdd()">Add</button>
+    <ul>
+        <li *ngFor="let exm of examples; even as isEven">
+            {{ exm.name }} <span *ngIf="isEven">(EVEN)</span>
+            <button (click)="onChange(exm)">Change</button>
+            <button (click)="onRemove(exm)">Remove</button>
+        </li>
+    </ul>
+<br>
+
+<h4>-- ngFor </h4>
+    <ul>
+        <li *ngFor="let exm of examples; even as isEven">
+            {{ exm.name }} <span *ngIf="isEven">(EVEN)</span>
+        </li>
+    </ul>
+<br>
+
+<h4>-- ngSwitch </h4>
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a [class.active]="viewMode == 'map'" class="nav-link" (click)="viewMode = 'map'">Map View</a>
+        </li>
+        <li class="nav-item">
+            <a [class.active]="viewMode == 'list'" class="nav-link" (click)="viewMode = 'list'">List View</a>
+        </li>
+    </ul>
+    <div [ngSwitch]='viewMode'>
+        <div *ngSwitchCase="'map'">Map View Content</div>
+        <div *ngSwitchCase="'list'">List View Content</div>
+        <div *ngSwitchDefault>Otherwise</div>   
+    </div>  
+<br>
+
+<h4>-- ngIf </h4>
+    <div *ngIf="courses.length > 0; then coursesList else noCourses"></div>
+    <ng-template #coursesList>
+        List of Courses
+    </ng-template>
+
+    <ng-template #noCourses>
+        No courses yet
+    </ng-template>
+<br><br>
+
+<h4>-- like component </h4>
+    <like
+        [likesCount]="tweet.likesCount"
+        [isActive]="tweet.isLiked" >
+    </like>
+<br><br>
+
+<h4>-- ng-container, ng-content </h4>
+    <bootstrap-panel>
+    <ng-container class="heading">Heading</ng-container>
+    <div class="body">
+        <p>Body</p>
+        <p>Some content here ...</p>
+    </div> 
+    </bootstrap-panel>
+<br>
+
+<h4>-- favorite component </h4>
+    <favorite [is-selected]="post.isFavorite" 
+                (change)="onFavoriteChange($event)"></favorite>
+<br><br>
+
+<h4>-- titel input </h4>                
+    <input type="text" [(ngModel)]="title"/>
+    <br>
+    {{ title | titleCase}}
+<br>
+
+<h4>-- course component </h4>
+    <courses></courses>
